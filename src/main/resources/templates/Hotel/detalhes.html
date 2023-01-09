@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>HOTEL PALACE</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="~{navbarON :: navbarON}"></div>
+	<div class="container">
+		<h1>Reservas</h1>
+		<p th:if="${mensagem}" th:text="${mensagem}"> </p>
+		<div class="row">
+      <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+      <h5 class="card-header">Detalhes do Quarto</h5>
+        <div class="card-body">
+          <p><strong>Tipo: </strong><span th:text="${quarto.tipo}">livia</span></p>
+          <p><strong>Valor: </strong><span th:text="${quarto.valor}">crv</span></p>
+          <p><strong>Informações: </strong><span th:text="${quarto.info}">04.10.22</span></p>
+        </div>
+      </div>
+  </div>
+  <div>
+  <hr>
+  <section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-6 col-lg-3 col-xl-3">
+        <img src="/imagens/logop.jpg"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+      <h2>Adicionar Reservas</h2>
+        <form th:action="@{/hotelp/{idQuarto}(idQuarto=${quarto.id})}" method="post" th:object="${reserva}">
+			
+        <div class="form-outline mb-3">
+            <input type="text" th:field="*{nome}" class="form-control form-control-lg"
+              placeholder="Digite seu nome" />
+              <p th:errors="*{nome}"></p>
+            <label class="form-label">Nome</label>
+          </div>
+          <div class="form-outline mb-3">
+            <input type="date" th:field="*{data}" class="form-control form-control-lg"
+              placeholder="Digite a data" />
+              <p th:errors="*{data}"></p>
+            <label class="form-label">Data</label>
+          </div>
+          <div class="form-outline mb-3">
+            <input type="time" th:field="*{horario}" class="form-control form-control-lg"
+              placeholder="Digite a hora" />
+              <p th:errors="*{horario}"></p>
+            <label class="form-label">Horario</label>
+          </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="btn btn-dark btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Reservar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+</section>
+  </div>
+  <div><h5>Lista de Reservas para o Quarto <span th:text="${quarto.tipo}">pad</span></h5>
+          <table class="table table-dark table-hover">
+          <thead>
+          <tr>
+          <th>Nome</th>
+          <th>Data</th>
+          <th>Horario</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="r : ${reservas}">
+          <td th:text="${r.nome}">livia</td>
+          <td th:text="${r.data}">12</td>
+          <td th:text="${r.horario}"></td>
+          <td>
+       		<a th:href="@{/hotelp/{idQuarto}/convidados/{idConvidado}/deletar (idQuarto=${quarto.id}, idConvidado=${r.id})}" style="color: grey;"><i class="bi bi-trash"></i></a>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+	</div>
+</body>
+</html>
