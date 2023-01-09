@@ -101,7 +101,7 @@ public class HotelController {
 			return md;
 		}
 		Quartos quartos = opt.get();
-		md.setViewName("Hotel/formQuarto");
+		md.setViewName("Hotel/formQuartos");
 		md.addObject("quartos", quartos);
 
 		return md;
@@ -121,7 +121,7 @@ public class HotelController {
 		return "redirect:/hotelp";
 	}
 
-	@GetMapping("/{idQuarto}/convidados/{idConvidado}/deletar")
+	@GetMapping("/{idQuarto}/reservas/{idConvidado}/deletar")
 	public String deletarReserva(@PathVariable Long idQuarto, @PathVariable Long idConvidado,
 			RedirectAttributes attributes) {
 

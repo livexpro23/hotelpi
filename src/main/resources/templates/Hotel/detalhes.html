@@ -79,7 +79,7 @@
           <td th:text="${r.data}">12</td>
           <td th:text="${r.horario}"></td>
           <td>
-       		<a th:href="@{/hotelp/{idQuarto}/convidados/{idConvidado}/deletar (idQuarto=${quarto.id}, idConvidado=${r.id})}" style="color: grey;"><i class="bi bi-trash"></i></a>
+       		<a th:href="@{/hotelp/{idQuarto}/reservas/{idConvidado}/deletar (idQuarto=${quarto.id}, idConvidado=${r.id})}" style="color: grey;"><i class="bi bi-trash"></i></a>
           </td>
           </tr>
           </tbody>
